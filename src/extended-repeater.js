@@ -16,12 +16,17 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function repeater(str, options) {
-  let output = '';
-
-  for (let i = 0; i < options.repeatTimes; i++) {
-    output += str;
+  let redo = (line, separator, count) => {
+    return line.concat(separator).repeat(count).slice(0, - separator.length);
   }
-  return output;
+  let line = String(str);
+
+  let add = '';
+  if (!options) return line;
+  if (typeof options.addition !== 'undefined') {
+    add = redo(String(options.addition), options.additionSeparator || '|', options.additionRepeatTimes || 1)
+  }
+  return redo(line.concat(add), options.separator || '+', options.repeatTimes || 1);
 }
 
 module.exports = {
