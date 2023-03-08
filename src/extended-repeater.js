@@ -16,7 +16,12 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function repeater(str, options) {
-  return str.repeat(options.repeatTimes);
+  let output = '';
+
+  for (let i = 0; i < options.repeatTimes; i++) {
+    output += str;
+  }
+  return output;
 }
 
 module.exports = {
