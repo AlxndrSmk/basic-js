@@ -18,7 +18,15 @@ const HALF_LIFE_PERIOD = 5730;
  *
  */
 function dateSample(sampleActivity) {
-  return Math.ceil((Math.log(MODERN_ACTIVITY / Number(sampleActivity))) / (Math.log(2) / HALF_LIFE_PERIOD))
+  let isNumerick = n => !!Number(n);
+
+  if (typeof sampleActivity == 'string' && 
+      isNumerick(sampleActivity) && 
+      Number(sampleActivity) < 14.99 &&
+      Number(sampleActivity) > 0
+      ) {
+    return Math.ceil((Math.log(MODERN_ACTIVITY / Number(sampleActivity))) / (Math.log(2) / HALF_LIFE_PERIOD));
+  } else return false;
 }
 
 module.exports = {
