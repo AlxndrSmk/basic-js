@@ -4,17 +4,17 @@ const { NotImplementedError } = require('../extensions/index.js');
  * Implement chainMaker object according to task description
  * 
  */
-const chainMaker = {
+ const chainMaker = {
   chain: [],
   getLength() {
-    // return
+    return this.chain.length;
   },
   addLink(value) {
     this.chain.push(`( ${String(value)} )`);
     return this;
   },
   removeLink(position) {
-    if (position <= 0 || position > this.chain.length || typeof position !== 'number') {
+    if (position <= 0 || position > this.getLength() || typeof position !== 'number') {
       this.chain = [];
       throw Error("You can\'t remove incorrect link!");
     }
@@ -27,9 +27,13 @@ const chainMaker = {
     return this;
   },
   finishChain() {
-    return this.chain.join('~~');
+    let res = this.chain.join('~~');
+    this.chain = [];
+
+    return res;
   }
-};
+}
+
 module.exports = {
   chainMaker
 };
