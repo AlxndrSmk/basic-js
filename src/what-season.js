@@ -15,6 +15,7 @@ function getSeason(date) {
   let seasons = ['winter', 'spring', 'summer', 'autumn'];
   if (!date) return 'Unable to determine the time of year!';
   if (!Date.parse(date)) throw new Error('Invalid date!');
+  if (!!Object.getOwnPropertyNames(date).length) throw new Error('Invalid date!');
 
   let m = date.getMonth() + 1;
 
