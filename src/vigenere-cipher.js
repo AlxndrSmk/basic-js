@@ -22,6 +22,7 @@ const { NotImplementedError } = require('../extensions/index.js');
  class VigenereCipheringMachine {
 
   encrypt(mes, key, mode) {
+    if (!mes || !key) throw Error ("Incorrect arguments!")
       key = key.toUpperCase(); // подгон ключа по высоте
       mes = mes.toUpperCase(); // подгон сообщения по высоте
       let alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";		// Строка алфавита
@@ -74,7 +75,8 @@ const { NotImplementedError } = require('../extensions/index.js');
 
       return res.slice(0, mes.length); // вернуть строку результата    
   }
-  decrypt() {
+  decrypt(mes, key) {
+    if (!mes || !key) throw Error ("Incorrect arguments!");
 
   }
 }
